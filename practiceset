@@ -1,0 +1,13 @@
+Practice Set
+1.	Silver Blooms is a hostel in Scholar’s Hub University campus. Under graduate students of university is given accommodation in this hostel. Each room in hostel can accommodate 3 students. When a student joins the hostel a room is allotted to the student. Student’s preference is looked into while allotting a room. If the preferred room is not available, then the hostel allots any available room. The monthly rent is calculated on the basis of total expenses incurred in a month. The total expense is divided by the number of inmates to find the share of rent each person should pay. In addition to this an inmate has to pay mess fee also for the number of days food was availed from the mess. Since the number of inmates is increasing, Silver Blooms is finding it difficult to manage various activities. Write a program to manage: 
+a.	Room allocation
+b.	Room de-allocation
+c.	Calculation of monthly rent
+2.	Keep Talking is a leading mobile communication service provider in the country. They offer post-paid mobile connection services across cities. There are various tariff plans they offer to customers. Customers’ calls are charged based on the plan they have opted for. Write a program to:
+a.	Calculate bill of a customer
+b.	Find number of customer who have opted for a particular tariff plan
+c.	Find the connection with the highest bill
+3.	All Smarts’ university has a library with extensive collection of books. A student can rent up to 5 books at a time. Write a program to manage:
+a.	Issuing books
+b.	Returning books
+c.	Searching for book using title
