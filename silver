@@ -1,0 +1,225 @@
+student.java
+=======================================================
+package classRelationship2;
+
+public class Student
+{
+	private String stuName;
+	private String stuId;
+
+	Student(String stuName,String stuId)
+	{
+		this.setStuName(stuName);
+		this.setStuId(stuId);
+	}
+	Student()
+	{
+		this.setStuName(null);
+		this.setStuId(null);
+	}
+	
+	public String getStuName() {
+		return stuName;
+	}
+	public void setStuName(String stuName) {
+		this.stuName = stuName;
+	}
+	public String getStuId() {
+		return stuId;
+	}
+	public void setStuId(String stuId) {
+		this.stuId = stuId;
+	}
+		
+}
+
+room.java
+===================================================
+
+package classRelationship2;
+
+import java.util.ArrayList;
+
+public class Room 
+{
+	private String roomNo;
+	private ArrayList <Student> studInRoom=new ArrayList<Student>(3);
+	
+	Room(String roomNo)
+	{
+		this.roomNo=roomNo;
+	}
+	
+	public String getRoomNo() {
+		return roomNo;
+	}
+	public void setRoomNo(String roomNo) {
+		this.roomNo = roomNo;
+	}
+	public ArrayList <Student> getStudInRoom() {
+		return studInRoom;
+	}
+	public void setStudInRoom(ArrayList <Student> studInRoom) {
+		this.studInRoom = studInRoom;
+	}
+	
+	
+	
+	
+}
+
+
+hosteltest.java
+================================================================================
+
+
+package classRelationship2;
+
+public class HostelTest
+{
+	public static void main(String[] args)
+	{
+	Hostel hstl=new Hostel();
+	hstl.setRent(6000);
+	hstl.setMessBill(3000);
+	
+	Student stud1 = new Student("Girish","123");
+	Student stud2 = new Student("Gaurav","113");
+	Student stud3 = new Student("Sumit","103");
+	Student stud4 = new Student("Ravi","133");
+	
+	hstl.addNewStudent(stud1);
+	hstl.addNewStudent(stud2);
+	hstl.addNewStudent(stud3);
+	hstl.addNewStudent(stud4);
+	
+	Room rum = new Room("001");
+	hstl.addNewRoom(rum);
+	
+	hstl.allotRoom(stud4, rum);
+	hstl.allotRoom(stud1, rum);
+	hstl.allotRoom(stud3, rum);
+
+	hstl.leaveRoom(stud4);
+	
+	
+	System.out.println(hstl.getRoomList().get(0).getStudInRoom().get(0).getStuName());		//Prints details of a particular student in a room
+	System.out.println(hstl.calculateRent(stud1));							//Calculates Rent
+	}
+}
+
+
+hostel.java
+===========================================================================
+
+
+package classRelationship2;
+
+import java.util.ArrayList;
+
+public class Hostel
+{
+	private double rent;
+	private double messBill;
+	
+	public double getRent() {
+		return rent;
+	}
+	
+public void setRent(double rent) {
+		this.rent = rent;
+	}
+
+	public double getMessBill() {
+		return messBill;
+	}
+
+	public void setMessBill(double messBill) {
+		this.messBill = messBill;
+	}
+
+	private ArrayList<Student> studList=new ArrayList<Student>();
+	
+	private ArrayList<Room> roomList=new ArrayList<Room>();
+
+	public ArrayList<Student> getStudList() {
+		return studList;
+	}
+
+	public void setStudList(ArrayList<Student> studList) {
+		this.studList = studList;
+	}
+
+	public ArrayList<Room> getRoomList() {
+		return roomList;
+	}
+
+	public void setRoomList(ArrayList<Room> roomList) {
+		this.roomList = roomList;
+	}
+		
+	void addNewStudent(Student stud)
+	{
+		studList.add(stud);
+	}
+	void addNewRoom(Room room)
+	{
+		roomList.add(room);
+	}
+	
+	boolean checkAvailability(Room room)
+	{
+		boolean x=false;
+		if(room.getStudInRoom().size()<3)
+		{
+			x=true;
+		}
+		return x;
+	}
+	
+	void leaveRoom(Student stud)
+	{
+		for(Student tempStu : studList)
+		{
+			if (tempStu.equals(stud))
+			{
+				for (Room tempRoom:roomList)
+				{
+					if (tempRoom.getStudInRoom().contains(tempStu))
+					{
+						tempRoom.getStudInRoom().remove(tempStu);
+					}
+				}
+			}
+		}
+	}
+	
+	void allotRoom(Student stud,Room room)
+	{
+		for(Room tempRoom : roomList)
+		{
+			if (tempRoom.equals(room))
+			{
+				if(checkAvailability(room)==true)
+				{
+				tempRoom.getStudInRoom().add(stud);
+				}
+			}
+		}
+	}
+	
+	double calculateRent(Student stud)
+	{
+		double temp=0;
+		for(Room rum: roomList)
+		{
+			if(rum.getStudInRoom().contains(stud))
+			{
+				temp=(rent/(rum.getStudInRoom().size()))+messBill;
+			}
+		}
+		return temp;
+	}
+}
+
+
