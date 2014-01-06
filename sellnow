@@ -1,0 +1,314 @@
+sellnow.java
+====================================
+package sellNow;
+
+import java.util.ArrayList;
+
+public class SellNowTest {
+	
+
+	public static void registerUser()
+	{
+		Users user = new Users("sumit");
+		
+		System.out.println("the new user added is :" +user.getUserName());
+	}
+
+	
+	
+	
+	
+	
+	public static void main(String[] args) {
+	
+		//ArrayList<Product> prodList = new ArrayList<Product>();
+		//ArrayList<Product> brandList = new ArrayList<Product>();
+		
+		
+		//add users 
+		Users user1 = new Users("Sumit");
+		Users user2 = new Users("Ravi");
+		Users user3 = new Users("Tarun");
+		Users user4 = new Users("Ariz");
+		Users user5 = new Users("Rajat");
+		Users user6 = new Users("Vivek");
+		Users user7 = new Users("Girish");
+		//--------------------users added--------------------------
+		Advertisement ad1 = new Advertisement();
+		
+		ad1.addUserToAdvertisement(user1);
+		ad1.addUserToAdvertisement(user2);
+		ad1.addUserToAdvertisement(user3);
+		ad1.addUserToAdvertisement(user4);
+		ad1.addUserToAdvertisement(user5);
+		ad1.addUserToAdvertisement(user6);
+		
+		
+		Users user = new Users(null);
+		user.setAdvertisementType("electronics");
+		user.setUserName("Sumit");
+		
+		Advertisement adver = new Advertisement();
+		
+		adver.setAdId(1);
+		
+		System.out.println("advertisement type for "+user.getUserName()+ " is " +user.getAdvertisementType());
+		Product prod1 = new Product("Electronics");
+		Product prod2 = new Product("Books");
+		Product prod3 = new Product("Textiles");
+		Product prod4 = new Product("Vehicles");
+		Product prod5 = new Product("Mobiles");
+		Product prod6 = new Product("Garment");
+		
+		//----------------------------------------
+		
+		Product prod7 = new Product("LG/Sony");
+		Product prod8 = new Product("Pearson");
+		Product prod9 = new Product("Sarees");
+		Product prod10 = new Product("Activa");
+		Product prod11 = new Product("Nokia");
+		Product prod12 = new Product("Levis");
+		
+		//-----------------------------------------
+		
+		adver.addToProductList(prod1);
+		adver.addToProductList(prod2);
+		adver.addToProductList(prod3);
+		adver.addToProductList(prod4);
+		adver.addToProductList(prod5);
+		adver.addToProductList(prod6);
+		
+		adver.addToBrandList(prod7);
+		adver.addToBrandList(prod8);
+		adver.addToBrandList(prod9);
+		adver.addToBrandList(prod10);
+		adver.addToBrandList(prod11);
+		adver.addToBrandList(prod12);
+		
+		//register a user
+		
+		registerUser();
+		
+			for (Product adv : prodList)
+			{
+				System.out.println("........" +adv.getProdList());
+			}
+		
+			
+	
+		
+		
+
+	}
+
+}
+
+
+
+advertisement.java
+=============================================================
+
+package sellNow;
+import java.util.ArrayList;
+
+public class Advertisement {
+
+	private int adId;
+	
+	ArrayList<Product> prodList = new ArrayList<Product>();
+	ArrayList<Product> brandList = new ArrayList<Product>();
+	ArrayList<Users> userList = new ArrayList<Users>();
+	//constructor
+	
+
+
+	Advertisement(int adId)
+	{
+		this.adId = adId;
+	}
+	
+	Advertisement()
+	{
+		
+	}
+	//methods to add to the Array list
+	
+	public void addToProductList(Product categoryName)
+	{
+	     prodList.add(categoryName);
+	    
+	}
+	public void addToBrandList(Product brandName)
+	{
+		 brandList.add(brandName);
+	}
+	public void addUserToAdvertisement(Users user)
+	{
+		userList.add(user);
+	}
+	
+	
+	
+	//getter and setter
+	
+	
+	public int  getAdId()
+	{
+		return adId;
+	}
+	public ArrayList<Product> getProdList() {
+		return prodList;
+	}
+
+	public void setProdList(ArrayList<Product> prodList) {
+		this.prodList = prodList;
+	}
+
+	public ArrayList<Product> getBrandList() {
+		return brandList;
+	}
+
+	public void setBrandList(ArrayList<Product> brandList) {
+		this.brandList = brandList;
+	}
+
+	public void setAdId(int adId)
+	{
+		this.adId = adId;
+	}
+	public ArrayList<Users> getUserList() {
+		return userList;
+	}
+
+	public void setUserList(ArrayList<Users> userList) {
+		this.userList = userList;
+	}
+	
+	
+}
+
+
+product.java
+===================================================
+
+package sellNow;
+
+import java.util.ArrayList;
+
+public class Product {
+	
+	ArrayList<Product> prodList = new ArrayList<Product>();
+	ArrayList<Product> brandList = new ArrayList<Product>();
+	private String productCategory;
+	private String productBrand;
+	
+	//constructors
+	
+	
+	Product(String productCategory, String productBrand)
+	{
+		this.productCategory = productCategory;
+		this.productBrand = productBrand;
+	}
+	
+	Product (String productBrand)
+	{
+		this.productBrand = productBrand;
+	}
+	
+	//getter and setter
+	
+	public void setProductcategory(String productCategory)
+	{
+		this.productCategory = productCategory;
+	}
+	
+	
+	public ArrayList<Product> getProdList() {
+		return prodList;
+	}
+
+	public void setProdList(ArrayList<Product> prodList) {
+		this.prodList = prodList;
+	}
+
+	public ArrayList<Product> getBrandList() {
+		return brandList;
+	}
+
+	public void setBrandList(ArrayList<Product> brandList) {
+		this.brandList = brandList;
+	}
+	public String getProductcategory()
+	{
+		return productCategory;
+	}
+	public void setProductBrand(String productBrand)
+	{
+		this.productBrand = productBrand;
+	}
+	public String getProductBrand()
+	{
+		return productBrand;
+	}
+
+}
+
+users.java
+================================================================================================
+package sellNow;
+
+import java.util.ArrayList;
+
+public class Users {
+	
+	ArrayList<Advertisement> adList = new ArrayList<Advertisement>();
+	
+	private String userName;
+	private String advertisementType;
+	
+	//construtor
+	Users(String userName, String advertisementType)
+	{
+		this.advertisementType = advertisementType;
+		this.userName = userName;
+	}
+	
+	Users(String userName)
+	{
+		this.userName = userName;
+	}
+	//getter and setter
+	
+	public String getUserName()
+	{
+		return userName;
+	}
+	public void setUserName(String userName)
+	{
+		this.userName = userName;
+	}
+	
+	public String getAdvertisementType()
+	{
+		return advertisementType;
+	}
+	
+	public void setAdvertisementType(String advertisementType)
+	{
+		this.advertisementType = advertisementType;
+	}
+
+}
+
+/*
+ * 6.	Sell Now manages an online advertisement site, where users can advertise about various products 
+ * they want to sell. Users can post advertisements to sell various products. Users need to provide the
+ *  category of the product (e.g – Electronics, Books, Textiles, and Vehicle etc), 
+ * brand of the product (e.g – Nokia, Reebok, etc.). User can anytime remover the advertisement. 
+ * Write a program to
+a.	Register a user
+b.	Post an advertisement
+c.	Remove an advertisement.
+
+ */
